@@ -68,6 +68,7 @@ router.get("/posts/:id", (req, res) => {
 */
 
 //Route /posts/new => POST
+/*
 router.post("/posts/new", (req, res) => {
   if (req.body.title === "" || req.body.content === "") {
     res.status(400).json({ error: "Posts must have title and content" });
@@ -75,6 +76,7 @@ router.post("/posts/new", (req, res) => {
     res.json({ post: req.body });
   }
 });
+*/
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");
