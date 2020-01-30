@@ -1,12 +1,22 @@
 const express = require("express");
-
 const app = express();
 
-const router = express.Router();
+const con = require('./config/database');
 
+const router = express.Router();
+const indexRouter = require('./routes/index');
+const postRouter = require('./routes/post');
+
+app.use((req, res, next) => {
+  req.con = con;
+  next();
+});
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use("/", router);
+
+//Routes
+app.use("/", indexRouter);
+app.use("/posts", postRouter);
 
 //Array myPosts
 const myPosts = [
@@ -46,9 +56,11 @@ router.post("/newsletter", (req, res) => {
 });
 
 //Route /posts => GET
+/*
 router.get("/posts", (req, res) => {
   res.json(myPosts);
 });
+*/
 
 //Route /posts/:id => GET
 router.get("/posts/:id", (req, res) => {
