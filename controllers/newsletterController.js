@@ -7,10 +7,12 @@ module.exports = {
           );
     },
     new: (req, res) => {
-        const email = req.body.email;
+        const newsletter = req.body;
+        /*
         const newsletter = {
             email: email
         }
+        */
         newsletterModel.insert(req.con, newsletter, (error, result) => {
             if(error) throw error;
             res.json({ status: 200, email });
