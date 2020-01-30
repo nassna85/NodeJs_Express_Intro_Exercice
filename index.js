@@ -6,6 +6,7 @@ const con = require('./config/database');
 const router = express.Router();
 const indexRouter = require('./routes/index');
 const postRouter = require('./routes/post');
+const newsletterRouter = require('./routes/newsletter');
 
 app.use((req, res, next) => {
   req.con = con;
@@ -17,6 +18,7 @@ app.use(express.urlencoded({ extended: true }));
 //Routes
 app.use("/", indexRouter);
 app.use("/posts", postRouter);
+app.use("/newsletter", newsletterRouter);
 
 //Array myPosts
 const myPosts = [
@@ -36,18 +38,14 @@ const myPosts = [
     content: "My content 3"
   }
 ];
-
-// Route / => GET
-router.get("/", (req, res) => {
-  res.send("<h1>Some Title</h1><a href=”/newsletter”>Newsletter</a>");
-});
-
+/*
 // Route /newsletter => GET
 router.get("/newsletter", (req, res) => {
   res.send(
     '<form action="/newsletter" method="post"><input type="email" name="email"><input type="submit"></form>'
   );
 });
+*/
 
 // Route /newsletter => POST
 router.post("/newsletter", (req, res) => {
@@ -55,14 +53,8 @@ router.post("/newsletter", (req, res) => {
   res.json({ status: 200, email });
 });
 
-//Route /posts => GET
-/*
-router.get("/posts", (req, res) => {
-  res.json(myPosts);
-});
-*/
-
 //Route /posts/:id => GET
+/*
 router.get("/posts/:id", (req, res) => {
   const id = req.params.id - 1; // => -1 because it's a array and the first element begin with number 0
   if (!myPosts[id]) {
@@ -71,6 +63,7 @@ router.get("/posts/:id", (req, res) => {
     res.json({ post: myPosts[id] });
   }
 });
+*/
 
 //Route /posts/new => POST
 router.post("/posts/new", (req, res) => {
