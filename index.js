@@ -48,10 +48,12 @@ router.get("/newsletter", (req, res) => {
 */
 
 // Route /newsletter => POST
+/*
 router.post("/newsletter", (req, res) => {
   const email = req.body.email;
   res.json({ status: 200, email });
 });
+*/
 
 //Route /posts/:id => GET
 /*
